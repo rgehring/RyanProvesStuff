@@ -1,0 +1,10 @@
+# unnecessary latex and swap files
+*.swp
+*.swo
+*.aux
+*.log
+*.toc
+*.gz
+
+# images
+*.png
