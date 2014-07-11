@@ -32,6 +32,9 @@
 \usepackage{graphicx} % Required to insert images
 \usepackage{listings} % Required for insertion of code
 \usepackage{courier} % Required for the courier font
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % math script characters
 
 % Margins
 \topmargin=-0.45in
@@ -184,7 +187,44 @@
 %----------------------------------------------------------------------------------------
 
 
-\begin{homeworkProblem}[Derivation of Coefficient Estimates]
+\begin{homeworkProblem}[Theory]
+
+\subsection{Model Parametrization}
+
+A vector of response variables $Y$ is estimated by the product of a matrix of
+predictive variables $X$ and coefficient vector $\beta$ with normal errors $\epsilon$.
+
+\begin{equation}
+Y = X \beta + \epsilon
+\end{equation}
+
+
+\subsection{Loss Function}
+Minimize the sum of squared errors.
+
+\begin{equation}
+SSE = \epsilon^T \epsilon
+\end{equation}
+
+
+\begin{equation*}
+SSE = (Y - X\beta)^T (Y - X\beta)
+\end{equation*}
+
+\subsection{Normal Equation}
+
+To minimize loss, differentiate with respect to the coefficients, set to zero: 
+\begin{equation}
+0 = -2X^T(Y - X\beta)
+\end{equation}
+
+\subsection{Coefficient Estimates}
+
+Multiply by $(X^T X)^{-1}$ (and absorb 2 into $\beta$) to get the least squares estimate $\beta$:
+\begin{equation}
+\beta = (X^TX)^{-1}X^TY
+\end{equation}
+
 
 
 
@@ -199,13 +239,56 @@
 
 % To have just one problem per page, simply put a \clearpage after each problem
 
-\begin{homeworkProblem}[Java Implementation]
-See below in Java.
+\begin{homeworkProblem}[Application]
+\subsection{Java Implementation}
+See below for an implementation using Apache commons math. The Github Repo contains code to run the model against an arbitrary csv data file.
 
-\javascript{regression}{Regression implemented in Java}
+\javascript{/Users/ryangehring/proj/RyanProvesStuff/regression/java/regression_tools}{Regression using commons math}
+
+
+
+\subsection{Estimation of Bear Age from Body Measurements}
+Above code was used to generate predictions of bear ages from a variety of body measurements.
+
+Bear Data (truncated for readability):
+
+\begin{tabular}{ l l l l l l l l  }
+  AGE & SEX & HEADLEN & HEADWTH & NECK & LENGTH & CHEST & WEIGHT \\ 
+19 & 0 & 11 & 5.5 & 16 & 53 & 26 & 80 \\ 
+55 & 0 & 16.5 & 9 & 28 & 67.5 & 45 & 344 \\ 
+81 & 0 & 15.5 & 8 & 31 & 72 & 54 & 416 \\ 
+115 & 0 & 17 & 10 & 31.5 & 72 & 49 & 348 \\ 
+104 & 1 & 15.5 & 6.5 & 22 & 62 & 35 & 166 \\ 
+100 & 1 & 13 & 7 & 21 & 70 & 41 & 220 \\ 
+56 & 0 & 15 & 7.5 & 26.5 & 73.5 & 41 & 262 \\ 
+51 & 0 & 13.5 & 8 & 27 & 68.5 & 49 & 360 \\ 
+57 & 1 & 13.5 & 7 & 20 & 64 & 38 & 204 \\ 
+53 & 1 & 12.5 & 6 & 18 & 58 & 31 & 144 \\ 
+68 & 0 & 16 & 9 & 29 & 73 & 44 & 332 \\ 
+8 & 0 & 9 & 4.5 & 13 & 37 & 19 & 34 \\ 
+44 & 1 & 12.5 & 4.5 & 10.5 & 63 & 32 & 140 
+\end{tabular}
+
+
+
+$R^2$ was measured to be ~0.64.
+
+
+
+\begin{tabular}{l l}
+SEX:	& 26.148987054376104 \\
+HEADLEN: & 3.0528248476353443 \\
+HEADWTH: & 3.791600738790277 \\
+NECK: & 1.366288821513322 \\
+LENGTH: & -0.11350398628450656 \\
+CHEST: & -2.9977072569525833 \\
+WEIGHT: & 0.3122111457892039 
+\end{tabular}
+
 
 
 \end{homeworkProblem}
+
 
 
 %----------------------------------------------------------------------------------------

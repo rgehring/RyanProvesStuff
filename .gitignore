@@ -8,3 +8,10 @@
 
 # images
 *.png
+
+# JAVA
+*.jar
+*.class
+
+# OSX
+.DS_Store
