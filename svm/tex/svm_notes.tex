@@ -1,0 +1,489 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amstext}
+
+\usepackage{mathrsfs} % math script characters
+\usepackage{centernot}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkTitle} % Top center head
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{Perl} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=Java, % Use Java in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+% Creates a new command to include a java script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\javascript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.java}
+\end{itemize}
+}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Support Vector Machine Notes} % Assignment title
+
+
+\newcommand{\hmwkAuthorName}{Ryan Gehring} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkTitle}}\\
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\newpage
+\tableofcontents
+\newpage
+
+
+%----------------------------------------------------------------------------------------
+%	Derivation of Coefficient Estimates
+%----------------------------------------------------------------------------------------
+
+
+\begin{homeworkProblem}[Theory]
+
+\subsection{Model Parametrization}
+
+Given a collection of $n$ points, training examples of form $ \left \{ \mathbf{x_i}, y_i \right \},$ 
+$\mathbf{x_i} \in \mathbb{R}^n, y_i \in \left \{ -1, 1  \right \} $,
+$i - 1 \in \mathbb{Z}^n$
+ we desire to separate the positive 
+ examples ($y_i=1$) from the negative examples with a plane of form:
+
+\begin{equation}
+  \mathbf{w} \mathbf{x} -b = 0
+\end{equation}
+
+This is only possible if all the training examples are linearly separable, 
+that is, a plane exists in $\mathbb{R}^n$ that separates the positive examples from the negative ones.
+A popular analogy is to think of this plane as the median line running down a street.
+
+\subsection{Objective Function}
+
+ Continuing the analogy from before, the 'gutters' of the street are the parallel hyperplanes running through the nearest positive and negative examples:
+
+\begin{equation}
+  \mathbf{w} \mathbf{x} -b = \pm 1
+\end{equation}
+
+The shortest distance $d_{\pm 1}$ between the origin and one of the hyperplanes can be calculated by noting that
+the shortest distance vector falls along the normal vector $\mathbf{w}$ and intersects the plane.
+
+\begin{equation}
+\mathbf{w} \left( d_{\pm 1} \frac{\mathbf{w}}{\mathbb{||}\mathbf{w}\mathbb{||}} \right) = b \pm 1
+\end{equation}
+
+The distance between the two hyperplanes can then be calculated as the difference 
+of the two distances from the origin.
+
+\begin{equation}
+d =  \mathbb{||}d_{+1} - d_{-1}\mathbb{||} = \frac{2}{\mathbb{||}\mathbf{w}\mathbb{||}} 
+\end{equation}
+
+
+We will seek to find the plane which has the widest possible 'lanes'---that is, which maximizes 
+the distance
+between the hyperplanes coincident with the nearest positive and negative examples. 
+As we saw above this distance is inversely proportional to the magnitude of $\mathbf{w}$, 
+So this is equivalent to minimizing $\mathbb{||}\mathbf{w}\mathbb{||}$ subject 
+to the constraints that the positive and negative 
+$y_i$ are separated by the two hyperplanes. Finally, we elect to minimize the square of the above,
+$\frac{1}{2} \mathbb{||}\mathbf{w}\mathbb{||}^2$,
+because minimizing (squared) Euclidean distance will satisfy the KKT conditions we will later enumerate,
+enabling us to reformulate the function in terms of inner products of feature vectors
+ and employ the  'kernel trick' an idea we will later develop. 
+
+\subsection{Constraints}
+
+Formally the n constraints are:
+
+\begin{equation*}
+y_i = 1 \implies  \mathbf{w}\mathbf{x_i} - b \geq 1 
+\end{equation*}
+\begin{equation*}
+y_i = -1 \implies \mathbf{w}\mathbf{x_i} - b \leq -1 
+\end{equation*}
+
+Which boils down to:
+
+\begin{equation}
+1 - y_i \left( \mathbf{w}\mathbf{x_i} - b \right)  \leq 0
+\end{equation}
+
+The above constrained optimization problem can be solved via quadratic programming.
+However, for the reasons noted above we will explore solving a related
+optimization called a \emph{Lagrangian dual problem}.
+
+
+
+\subsection{Lagrange Multipliers}
+
+
+For a general minimization problem of the function $f(\mathbf{w})$ subject to boundary conditions
+ $g_i(\mathbf{w})$, 
+
+\begin{equation}
+p^* = \min_{\mathbf{w}} f(\mathbf{w}), \forall i, g_i(\mathbf{w}) \leq c_i
+\end{equation}
+
+The method of solution via Lagrange multipliers considers
+specifying several contour paths, one for the function to be minimized and one for each constraint.
+(Contour paths are points where the function value is held constant).  
+For some set of choices of constants $c_1...c_n$, the curves will be tangent at the global minimum point, and the gradient
+of each curve will be a scalar multiple of each other.
+
+(For any contour path, the gradient is normal to the contour. )
+(If it weren't, the value of the function would not be constant along the contour.) 
+So at a tangent, where the contours are pointed in the same direction, 
+the gradients for all paths will be coincident.
+
+\begin{equation}
+\nabla f(\mathbf{w}) = \sum_{i=1}^n \lambda_i \nabla g_i(\mathbf{w})
+\end{equation}
+
+With this insight in hand, we can make a clever transformation and come up with an
+\emph{unconstrained} function, 
+minimization of which 
+represents the solution to the global minimization problem!
+Map the constraint $g_i(\mathbf{w}) \leq c_i$ to $h_i(\mathbf{w}) = g_i(\mathbf{w}) - c_i \leq 0$ 
+and add to $f$ to create the Lagrangian:
+
+\begin{equation}
+\mathcal{L(\mathbf{w}, \lambda)}  =  f(\mathbf{w}) + \sum_{i=1}^n \lambda_i  h_i(\mathbf{w})
+\end{equation}
+
+Now if we seek to minimize $\mathcal{L(\mathbf{w}, \lambda)}$ taking the gradient with respect to $\mathbf{w}$ and setting to zero
+yields equation (7) --- and taking the partial derivatives with respect to $\lambda_i $ and setting to zero
+yields $h_i(\mathbf{w}) = 0$ --- a candidate solution! Minimizing the lagrangian explicitly is 
+called the 'primal' form of
+ the optimization problem.
+
+The primal problem is unconstrained---if we take $\lambda$ to be positive, then by the fact that 
+$h(\mathbf{w}) \leq 0$ we know that 
+$f(\mathbf{w}) \geq \mathcal{L(\mathbf{w}, \lambda)}$. The primal form expressed formally is:
+
+\begin{equation}
+p^* = \min_{ \mathbf{w} }   \max_{ \lambda \geq 0 }   \mathcal{L(\mathbf{w}, \lambda)}
+\end{equation}
+
+
+
+\subsection{Lagrangian Duality}
+
+Formally the dual problem results from  interchanging
+the order of the max and min operations in the primal problem:
+
+\begin{equation}
+p_2^* =    \max_{ \lambda \geq 0 } \min_{ \mathbf{w} }   \mathcal{L(\mathbf{w}, \lambda)}
+\end{equation}
+
+The motivation for so doing is interesting and not immediately obvious so I will digress briefly about it. 
+Suppose you are seeking to purchase a schedule
+of items $\mathbf{w}$ whose cost is $ f(\mathbf{w}) $ subject to shopping list constraints---
+that is, you want a certain range of quantities of apples, bananas, etc.
+ The primal form of the solution 
+fixes the schedule of items, and then finds parameters $\lambda_1...\lambda_n$ which minimize the 'cost'
+ of any boundary condition violations $\lambda_i h(\mathbf{w})$. In the primal form, this cost is either 
+ infinity (constraint violated) or zero (no constraint violated). By considering a number of possible
+ schedules of purchases, you arrive at the cheapest solution which satisfies your constraints.
+
+The dual form results from considering the problem above from the perspective
+of the merchant rather than the customer.
+Here we first fix the 'unit cost' vector $\lambda$ 
+of boundary violations (producing too many or too few items), 
+then compute the worst-case, minimum economic outcome from an adversarial customer's shopping choices.
+By following this line of reasoning for many choices of cost structures, we arrive at an outcome that 
+maximizes profit to the merchant. It so happens that this 
+is a lower bound on the primal solution---$f$ (revenue) is always greater than or equal to $\mathcal{L}$ (profit),
+and so the merchant will always earn less money than the customer pays. 
+
+Under strong duality ($f$ is convex, solution is strictly feasible), it turns out that the the dual solution
+is both a lower bound and an upper bound on the primal solution---in other words, for some 
+problems, they are equal. If you have convexity + feasibility then the KKT conditions listed below are also true.
+KKT conditions basically say that the solution has to be within
+the boundary and have derivative zero with respect to all free parameters, and one more thing:
+$   \lambda_i > 0  \implies h_i = 0$ 
+
+\begin{align}
+\nabla_{\mathbf{w} } \mathcal{L}   = 0 \\
+\nabla_{\lambda} \mathcal{L}  = 0 \\
+\forall i, h_i(\mathbf{w}) \leq 0 \\
+\forall i, \lambda_i \geq 0 \\
+\forall i, \lambda_i h_i(\mathbf{w}) = 0 
+\end{align}
+
+
+\subsection{The dual problem for SVM Classifiers}
+We can now solve the deal problem, which will have the interesting property that it is written entirely in 
+terms of inner products of feature vectors, which will allow us to employ the kernel trick to 
+turn SVM into a nonlinear classifier by projecting our data into high dimensional space.
+
+Recalling (5) we can write the Lagrangian as
+\begin{equation}
+\mathcal{L}(\mathbf{w}, \lambda) = \frac{1}{2}\mathbf{w}\mathbf{w} + 
+\sum_{i=1}^n \lambda_i  \left( y_i \left( \mathbf{w}\mathbf{x_i} - b \right) - 1 \right)
+\end{equation}
+
+Recall from the KKT criterion that $\lambda_i$ is only greater than 0 for cases where $g=0$, that is, 
+when the training point is right on the margin. Usually this only holds for a few points out of all the training data---these points are called the \textbf{support vectors}, and they contain all the information needed to train this type
+of classifier! (You could actually throw away most of the data and get the same result!)
+
+Now that we have the primal form, we can find the dual form. 
+So we must minimize first over $\mathbf{w}$ and $b$.
+We note KKT (11) is satisfied for a minimum $\mathbf{w}$:
+
+\begin{equation}
+\nabla_{\mathbf{w}}\mathcal{L} = 0 = \mathbf{w}  +  
+\sum_{i=1}^n \lambda_i  y_i  \mathbf{x_i} 
+\end{equation}
+
+Taking the derivative with respect to $b$ yields:
+
+\begin{equation}
+0 = -\sum_{i=1}^n \lambda_i  y_i  
+\end{equation}
+
+Reducing (16) using above 2 relations yields the dual optimization problem:
+
+\begin{equation}
+\mathcal{D}( \lambda) =
+\sum_{i=1}^n \lambda_i -
+ \frac{1}{2} \left(  \sum_{i=1}^n \sum_{j=1}^n  \lambda_i \lambda_j  y_i y_j  \mathbf{x_i}^T\mathbf{x_j}  \right)
+\end{equation}
+
+
+\subsection{Kernel Trick}
+Kernel's are the dot product of transformations called  \emph{feature mappings} of an input vector.
+Given a feature mapping $\phi$, 
+
+\begin{equation}
+K(\mathbf{x_i}, \mathbf{x_j}) = \phi(\mathbf{x_i})^T\phi(\mathbf{x_j})
+\end{equation}
+
+$K$ is a valid kernel if the kernel matrix (matrix giving the kernel result between all pairs of n items)
+is symmetric and positive semi-definite. (Basically, just the properties of the dot product). 
+
+Benefits of kernel function - by mapping to high dimensional space you can build a nonlinear classifier.
+
+
+\subsection{Non-separable data}
+In the case that the data is linearly inseparable, we can alter the loss function to a hinge function as follows:
+
+\begin{equation}
+f(\mathbf{w}) = \frac{1}{2}\mathbb{||} \mathbf{w}  \mathbb{||} + C \sum_i \epsilon_i
+\end{equation}
+
+where $\epsilon_i$ is the \emph{slack variable} for each training case, the amount by which the margin 
+misclassifies the case.
+
+The dual form of this optimization problem is given the same equation as before, but there are
+altered constraints:
+
+\begin{align}
+\mathcal{D}( \lambda) =
+\sum_{i=1}^n \lambda_i -
+ \frac{1}{2} 
+ \left(  \sum_{i=1}^n \sum_{j=1}^n  \lambda_i \lambda_j  y_i y_j  \mathbf{x_i}^T\mathbf{x_j}  \right) \\
+ 0 \leq \lambda_i \leq C \\
+ \sum \lambda_i y_i = 0
+\end{align}
+
+
+
+\subsection{Solving the Dual Problem via SMO}
+Coordinate ascent is an algorithm which seeks to maximize a function of several variables by 
+iteratively maximizing the function by each variable until convergence. IE, if you have a function of x
+and y, coordinate ascent would start at a given point, maximize in the x axis, then y, then x, then y again, until
+convergence.
+Sequential minimzal optimization is a simple idea - we are trying to maximize our dual function over $\lambda$
+but our constraint shows that $\lambda_i$ is determined by the other $\lambda$'s. So, rather than arg-maxing over 
+one parameter at a time, we do it over two, and repeat with a new pair until convergence.
+
+The update step is derived as follows:
+\begin{equation}
+\lambda_i y_i + \lambda_j y_j = \eta
+\end{equation}
+
+Where $\eta$ is a constant equal derived from the constraint (24).
+And if you substitute this into the dual loss function for $\lambda_i$ 
+and keep the other $\lambda$'s constant, 
+you have a quadratic equation in $\lambda_i$ which is trivial to solve. Then use that value of $\lambda_i$
+to determine the maximizing value of $lambda_j$. Repeat until KKT is satisfied within a tolerance.
+
+\end{homeworkProblem}
+
+
+
+%----------------------------------------------------------------------------------------
+%	Java Implementation
+%----------------------------------------------------------------------------------------
+
+
+% To have just one problem per page, simply put a \clearpage after each problem
+
+\begin{homeworkProblem}[Application]
+\subsection{Java Implementation}
+See the Github Repo for an implementation.
+
+
+
+
+
+\end{homeworkProblem}
+
+
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
