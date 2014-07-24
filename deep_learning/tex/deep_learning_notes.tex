@@ -1,0 +1,308 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % math script characters
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkTitle} % Top center head
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{15pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{Perl} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=Java, % Use Java in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+% Creates a new command to include a java script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\javascript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.java}
+\end{itemize}
+}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Deep\ Learning\ Notes\ (WIP)} % Assignment title
+
+
+\newcommand{\hmwkAuthorName}{Ryan Gehring} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkTitle}}\\
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\newpage
+\tableofcontents
+\newpage
+
+
+%----------------------------------------------------------------------------------------
+%	Derivation of Coefficient Estimates
+%----------------------------------------------------------------------------------------
+
+
+\begin{homeworkProblem}[Theory]
+
+\subsection{Historical Context and Biological Motivation}
+Neural networks are learning algorithms which take inspiration from biological 
+processes in the human brain. While the algorithms have been around for decades, it's
+only recently that their mass popularity has been rekindled due to some new training paradigms
+which enable the training of several layer, 'deep' neural networks against large datasets.
+Due to complicated parametrizations, many of the
+ statistical properties haven't been worked out, but neural networks have empirically
+ performed well on classical machine learning tasks and benchmarks and have even achieved
+ best in class results on a number of problem domains.
+
+
+\subsection{Model Structure: Classical Neural Networks}
+
+A classical neural network is a weighted directed graph consisting of nodes called \emph{neurons} connected
+by weighted directed edges  which I guess I will term 
+\emph{axons} after the biological nomenclature (I'm not aware of 
+formal terminology for edges in a neural network). 
+
+Neurons in neural networks are arranged in layers. Each layer forms a bipartite graph with it's 
+neighboring layers. In other words, all axons are directed from nodes in layer $i$ to layer $i \pm 1$.
+
+The first layer of a neural network is termed the input layer, and each neuron
+in the input layer  is the raw
+value for a predictive variable $x_i$ from a training dataset.
+The inputs are propagated along each axon of the graph
+to the next layer. 
+
+Neurons in every layer except the input layer are characterized by an 
+S-curved \emph{activation function} which operates 
+on  the inputs sent along axons. The biological inspiration is that apparently
+neurons are electrical noise gates---they fire an electrical response only when they
+receive an electrical signal above some amount.
+
+A popular activation function is the sigmoid activation function:
+
+\begin{equation}
+f(z) = \frac{1}{1+e^{-z}}
+\end{equation}
+
+In a \emph{feed forward} neural network, there are a finite number of \emph{hidden layers}
+and a final \emph{output layer}. The hidden layers are termed hidden because some form of
+supervised task is conducted by the output layer, where output is measured, 
+but hidden model layers lack a direct interpretation on their own, useful only in that they 
+contribute to the final output score.  However, it is relevant to note that there are occasionally 
+empirical interpretations that arise in specific problem domains. For example, in an image recognition
+domain, one layer of the network might empirically seem to behave as an edge detector, while another layer
+might recognize certain types of objects from the relationships of the edges.
+
+
+For a connected feedforward network where every node in layer $i$ is connected to every node in
+layer $i+1$ ), 
+the activation for a node $j$ in layer $i+1$ is given as the activation function
+ evaluated at the dot product
+of the activations of the neurons in layer $i$ 
+with their axon weights $\mathbf{w}_{i}^j$. (As noted above, the input
+layer activations are just the raw training data: $a_j^0 = x_j$).
+
+This algorithm is called forward propagation.
+
+\begin{equation}
+a_j^{i+1} =  f( \mathbf{w^i} \cdot a^{i} )
+\end{equation}
+
+
+From the above you can see that a neural network with only an input layer 
+and an activation layer is mathematically equivalent to
+a logistic regression.
+
+
+In matrix form, for a whole layer, and adding a constant neuron to each layer called a 
+\emph{bias unit} which receives no input, and simply adds a constant amount:
+
+\begin{equation}
+\mathbf{a}_{i+1} =  f(  \mathbf{W} \mathbf{a}_i  + \mathbf{b}_i )
+\end{equation}
+
+\subsection{Training\ and\ Backpropagation}
+
+A cost function is defined as the sum of squared prediction error plus a regularization term
+proportional to the magnitude of the weights. For one example our cost function is:
+
+\begin{equation}
+J(\mathbf{W}, \mathbf{b}) = \frac{1}{2} \left(  y_i - h_i  \right)^T 
+\left(  y_i - h_i  \right) + \sum_{\textit{axons}} w^2
+\end{equation}
+
+These models are commonly fit via batch gradient descent or other numerical methods.
+
+\subsection{Autoencoders and Self Taught Learning}
+Neural networks with many inputs but a restrictive hidden layer can be used to learn
+encodings for input data. These models are used for feature detection, compression, and also self-taught
+learning, in which autoencoded representations of input vectors are fed as input to a supervised algorithm.
+
+\subsection{Image\ Processing\ -\ Convolution\ and\ Pooling}
+Pixel data from images is immediately high dimensional, however in natural images nearby pixels tend to
+be similar, and aggregate statistics do an excellent job at summarizing large patches of images.
+We can use an autoencoder to learn features over small patches of an image and then apply the feature
+detector over each such patch of the image via a process called convolution.
+
+Pooling is the action of computing summary statistics over large, exclusive patches of convolved features
+to obtain a much lower dimensional representation of the data. Generally convolved and pooled images are
+then used as input to a classifier.
+
+\subsection{Deep\ Learning}
+The technique of stacking autoencoders is a way of pursuing greedy, layerwise training on large neural 
+networks. Train an autoencoder on the raw input, then train one using the output of that, do this 
+layer by layer, then finally train on
+the supervised task.
+
+
+\end{homeworkProblem}
+
+
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
