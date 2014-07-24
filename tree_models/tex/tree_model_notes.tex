@@ -1,0 +1,257 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % math script characters
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkTitle} % Top center head
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{15pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{Perl} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=Java, % Use Java in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+% Creates a new command to include a java script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\javascript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.java}
+\end{itemize}
+}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Tree\ Model\ Notes\ (WIP)} % Assignment title
+
+
+\newcommand{\hmwkAuthorName}{Ryan Gehring} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkTitle}}\\
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\newpage
+\tableofcontents
+\newpage
+
+
+%----------------------------------------------------------------------------------------
+%	Derivation of Coefficient Estimates
+%----------------------------------------------------------------------------------------
+
+
+\begin{homeworkProblem}[Theory]
+
+\subsection{Historical\ Context}
+Tree models came out in the 90's and were part of the nonparametric supervised 
+learning algorithm boom in the west. Definitely from the machine learning family of
+algorithms, tree models in particular seem to be based on lots of good ideas of things
+to do, but lack formal justification for many of the techniques. As a result, the asymptotics
+were worked out much later. As early nonparametric models, most of the magic of tree models 
+is just taking averages over subsets of the data and examining how good the prediction got---
+mathematics are sort of an afterthought. 
+I will accordingly keep these notes brief and just describe a few classes of tree models
+and summarize the techniques used. 
+
+\subsection{Classification\ and\ Regression\ Trees}
+CART models see a lot of a application for simple business analysis,
+as the produced regression tree is usually human-interpretable, tweakable,
+and interesting.
+These models are binary trees, with leaves representing model prediction (usually an average of the
+response variable in the bucket) and nodes representing \emph{splitting criteria}, usually a less-than-or-equal 
+condition on a predictive variable. The model is scored for any particular example by iterating through the
+tree until a leaf is reached, following the appropriate splitting criteria---taking a left child if true, else 
+taking the right.
+
+Basic CART models are trained by greedy optimization. New splits are generated based on the segregation of the
+data which reduces SSE prediction error the most across the dataset. The algorithm continues until 
+prediction error falls below some threshhold or the number of splits reaches a cap. Extensions to CART
+allow for fitting more complex models at the leaves, trying less greedy fitting approaches such as 'Texas two-step"
+which examines splits two levels deep, or trying bootstrapping or other sampling techniques to be discussed in the
+next section.
+
+\subsection{Random Forests}
+Random forests see a lot of use in industry as quick and dirty models. They are nonparametric,
+so you can be much less rigorous about feature selection, and out of the box let you know
+about what you can expect to get in terms of prediction accuracy with your data source. 
+They are sometimes criticized for being 'black boxy,' and somewhat slow to score, making them
+less popular for production models, but serve quite a useful purpose in R\&D and business analysis.
+
+Random Forest models are ensembles of tree models trained on several samples from the original dataset,
+but sampled with replacement, a sampling technique known as bootstrapping. The idea has biological 
+motivation - the idea being that sampling with replacement results in about one third of each new 
+dataset being a duplicate of a random row enforces some variability and regularization into the datasets,
+preventing overfitting sort of like mutations in genetics leading to genetic diversity.
+The trained tree models' predictions are averaged together to give the final model prediction, 
+an ensemble technique known as
+bagging.
+The models are trained just like CART models, except that at splits only a random subset of variables is 
+allowed to be considered, rather than finding the greedy optimum.
+Improvements could include the same extensions to CART, as well as different model-voting schemes.
+
+\subsection{Stochastic Gradient Boosting}
+This tree model greedily minimizes a loss function via weighted sum of several small "base learner" models,
+often CART models of restricted depth. Models are trained incrementally on the residuals of the 
+partially trained, previous components of the models. IE, I fit base learner one, score the model,
+feed the residuals in as new Y values to a second base learner, repeat.
+After each base learner is trained, the weight on the model in the global sum
+is greedily optimized. Similar to random forests in their pros and 
+cons--- another black boxy nonparametric model that achieves great prediction accuracy compared to
+most algorithms right out of the gate.
+
+
+
+\end{homeworkProblem}
+
+
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
